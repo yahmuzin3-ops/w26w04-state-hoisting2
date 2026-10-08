@@ -4,19 +4,7 @@ import { useState } from 'react'
 function App() {
   // counts 상태를 배열로 관리
   const [counts, setCounts] = useState([0, 0, 0])
-  
-  // // index에 해당하는 counts 값을 1 증가시키는 함수
-  // const onIncrement = (index) => {
-  //   // 상태를 업데이트할 때는 항상 새로운 배열을 만들어서 설정
-  //   setCounts(prevCounts => {
-  //     const newCounts = [...prevCounts] // Spread syntax로 배열 복사
-  //     newCounts[index] += 1
 
-  //     return newCounts
-  //   })
-  // }
-
-  // map 메서드를 사용하여 불변성을 유지하면서 특정 인덱스의 값만 증가
   const onIncrement = (index) => {
     setCounts(prevCounts =>
       prevCounts.map((count, i) =>
@@ -25,12 +13,20 @@ function App() {
     )
   }
 
+  // 배열에 새로운 카운터 값을 추가 (초기값 0)
+  const onAddCounter = () => {
+    setCounts(prevCounts => [...prevCounts, 0]) 
+  }
+
   // counts 배열의 모든 값을 더함
   const total = counts.reduce((sum, current) => sum + current, 0)
 
   return (
     <div>
       <h1>총합: {total}</h1>
+      <button onClick={onAddCounter}>
+        카운터 추가
+      </button>
       {
         // map 메서드로 counts 배열을 순회하며 Counter 컴포넌트 렌더링
         counts.map((count, index) => (
