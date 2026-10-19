@@ -20,6 +20,14 @@ function App() {
     )
   }
 
+   const onDecrement = (id) => {
+    setCounts(prevCounts =>
+      prevCounts.map(item =>
+        item.id === id ? { ...item, value: item.value - 1 } : item
+      )
+    )
+  }
+
   // 배열에 새로운 카운터 값을 추가 (초기값 0)
   const onAddCounter = () => {
     setCounts(prevCounts => [...prevCounts, { id: crypto.randomUUID(), value: 0 }])
@@ -74,6 +82,9 @@ function Counter({ count, onIncrement, onRemove }) {
       </button>
       <button onClick={onRemove}>
         제거
+      </button>
+      <button onClick={onDecrement}>
+        감소
       </button>
     </div>
   )
