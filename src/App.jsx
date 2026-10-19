@@ -57,6 +57,7 @@ function App() {
             count={item.value}
             onIncrement={() => { onIncrement(item.id) }}
             onRemove={() => { onRemoveCounter(item.id) }}
+            onDecrement={() => { onDecrement(item.id) }}
           />
         ))
       }
@@ -64,7 +65,7 @@ function App() {
   )
 }
 
-function Counter({ count, onIncrement, onRemove }) {
+function Counter({ count, onIncrement, onRemove, onDecrement }) {
   // Lazy initialization
   // useState의 초기값을 함수로 전달하면, 
   // 컴포넌트가 처음 렌더링될 때만 실행됨
